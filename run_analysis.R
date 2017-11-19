@@ -113,7 +113,13 @@ runAnalysis <- function(fileUrl) {
     # Clean up column names
     data <- cleanNames(data, "-|\\(\\)", "")
     data <- cleanNames(data, "mean", "Mean")
-    data <- cleanNames(data, "std", "Std")
+    data <- cleanNames(data, "std", "StandardDeviation")
+    data <- cleanNames(data, "^f", "frequencyDomain")
+    data <- cleanNames(data, "^t", "timeDomain")
+    data <- cleanNames(data, "Acc", "Accelerometer")
+    data <- cleanNames(data, "Gyro", "Gyroscope")
+    data <- cleanNames(data, "Freq", "Frequency")
+    data <- cleanNames(data, "Mag", "Magnitude")
 
     # Read in table mapping activity character labels to integers
     activityKey <- read.table(
