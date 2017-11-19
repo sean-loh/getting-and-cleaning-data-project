@@ -93,10 +93,6 @@ runAnalysis <- function(fileUrl) {
     # Download and unzip project file if necessary
     initialiseFiles(fileUrl)
 
-    # Read in feature labels
-    features <- read.table(paste(DATA_DIR, PATH_SEP, "features.txt", sep=""),
-        colClasses=c("NULL", "character"), check.names=FALSE)[,1]
-
     # Read all test and train data
     testData <- readData(paste(DATA_DIR, PATH_SEP, "test", sep=""))
     trainData <- readData(paste(DATA_DIR, PATH_SEP, "train", sep=""))
@@ -104,6 +100,9 @@ runAnalysis <- function(fileUrl) {
     # Combine test and train data into single data frame
     data <- rbind(testData, trainData)
 
+    # Read in feature labels
+    features <- read.table(paste(DATA_DIR, PATH_SEP, "features.txt", sep=""),
+        colClasses=c("NULL", "character"), check.names=FALSE)[,1]
     # Add column names to data frame
     colnames(data) <- c("Subject", "Activity", features)
 
